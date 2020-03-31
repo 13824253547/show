@@ -1,0 +1,564 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    user-select: none;
+}
+
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+#iphone > div::-webkit-scrollbar {
+    width: 4px; /*滚动条宽度*/
+    height: 16px; /*滚动条高度*/
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+#iphone > div::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #FFFFFF;
+    border-radius: 10px; /*滚动条的背景区域的圆角*/
+    background-color: #FFFFFF; /*滚动条的背景颜色*/
+}
+
+/*定义滑块 内阴影+圆角*/
+#iphone > div::-webkit-scrollbar-thumb {
+    border-radius: 10px; /*滚动条的圆角*/
+    -webkit-box-shadow: inset 0 0 6px #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.5); /*滚动条的背景颜色*/
+}
+
+/*动画*/
+@keyframes animation-rotate180 {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes animation-rotate360 {
+    0% {
+        transform: rotate(180deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes animation-width {
+    0% {
+        margin-right: 16px;
+        width: 0;
+    }
+
+    100% {
+        width: 16px;
+        margin-right: 0;
+    }
+}
+
+@keyframes animation-up {
+    0% {
+        height: 250px;
+    }
+
+    100% {
+        height: 0;
+    }
+}
+
+@keyframes animation-down {
+    0% {
+        height: 0;
+    }
+
+    100% {
+        height: 250px;
+    }
+}
+
+/*动画*/
+/*字体图标*/
+@font-face {
+    font-family: 'icomoon';
+    src: url('../lib/font/phone/icomoon.eot');
+    src: url('../lib/font/phone/icomoon.eot?#iefix') format('embedded-opentype'),
+    url('../lib/font/phone/icomoon.woff') format('woff'),
+    url('../lib/font/phone/icomoon.ttf') format('truetype'),
+    url('../lib/font/phone/icomoon.svg#icomoon') format('svg');
+    font-weight: normal;
+    font-style: italic;
+}
+
+[data-icon]:before {
+    font-family: 'icomoon';
+    content: attr(data-icon);
+    speak: none;
+    color: #e8e8e8;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased
+}
+
+.changeColor:before {
+    font-family: 'icomoon';
+    content: attr(data-icon);
+    speak: none;
+    color: #6B6ECE;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased
+}
+
+/*字体图标*/
+
+/*背景*/
+body {
+    background-image: url("../img/background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 1280px;
+}
+
+/*背景*/
+/*蒙版*/
+#mask {
+    width: 1280px;
+    height: 100%;
+    background-color: rgba(1, 1, 1, 0.5);
+    position: relative;
+    z-index: 1;
+}
+
+/*蒙版*/
+
+/*登录盒子*/
+#mask > div {
+    border-radius: 25px;
+    width: 680px;
+    height: 500px;
+    background-color: #fff;
+    position: fixed;
+    display: flex;
+    display: -webkit-flex;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    box-sizing: border-box;
+}
+
+
+#box-right {
+    box-sizing: border-box;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 500px;
+    height: 500px;
+    z-index: 2;
+    border: none;
+}
+
+/*登录盒子*/
+/*六条选项*/
+#box-right > #title {
+    box-sizing: border-box;
+    width: 64%;
+    height: 60px;
+}
+
+#blockFirst, #blockSecond, #blockThird {
+    box-sizing: border-box;
+    width: 80%;
+    height: 400px;
+    display: -webkit-flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#blockFirst {
+    display: flex;
+}
+
+#blockSecond {
+    width: 64%;
+    background-color: red;
+    display: none;
+}
+
+#blockThird {
+    width: 64%;
+    background-color: yellow;
+    display: none;
+}
+
+#blockFirst > div {
+    width: 100%;
+    height: 50px;
+}
+
+
+.label, .label > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.label > div {
+    justify-content: flex-start;
+    width: 80%;
+    height: 80%;
+    border: solid 1px #e8e0e0;
+}
+
+.label:nth-child(5) > div {
+    border: none;
+}
+
+
+/*六条选项*/
+/*题头*/
+#title {
+    width: 80%;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-bottom: solid 2px #e8e0e0;
+}
+
+/*题头*/
+/*题头内*/
+#title > div {
+    flex: 1;
+    height: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    padding-top: 18px;
+    vertical-align: center;
+}
+
+#title > .hidden {
+    flex: 0.8;
+    height: 100%;
+}
+
+#title > div > p {
+    font-size: 16px;
+    color: black;
+    opacity: 0.5;
+    height: 100%;
+    line-height: 100%;
+}
+
+#title > div > p:hover {
+    cursor: pointer;
+}
+
+.active {
+    border-bottom: solid 2px #6B6ECE;
+    opacity: 1 !important;
+}
+
+/*题头内*/
+/*手机输入框内*/
+.left {
+    margin-left: 10px;
+}
+
+
+.arrowParent > em {
+    float: left;
+    margin-left: 8px;
+    font-style: normal
+}
+
+.label input {
+    border: none;
+    outline: none;
+}
+
+#iphone {
+    position: relative;
+
+}
+
+#arrow {
+    display: block;
+    float: left;
+}
+
+#iphone > div {
+    width: 50%;
+    display: none;
+    background-color: #fff;
+    position: absolute;
+    top: 40px;
+    left: -1px;
+    border-left: solid 1px #e8e8e8;
+    border-right: solid 1px #e8e8e8;
+    border-bottom: solid 1px #e8e8e8;
+    z-index: 2;
+    overflow: auto;
+}
+
+#iphone > div > ul {
+    width: 100%;
+    height: 100%;
+    list-style: none;
+}
+
+#iphone > div > ul > li {
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 7px;
+    font-size: 14px;
+    line-height: 42px;
+    height: 42px;
+}
+
+#iphone > div > ul > li:hover {
+    cursor: pointer;
+    background-color: #f2f5f9;
+}
+
+#iphone > div > ul > li > span {
+    float: right;
+    padding-right: 7px;
+}
+
+.animation-up, .animation-down, .animation-rotate180, .animation-rotate360 {
+    -webkit-animation-duration: 1200ms;
+    -moz-animation-duration: 1200ms;
+    -o-animation-duration: 1200ms;
+    animation-duration: 1200ms;
+    -webkit-animation-timing-function: ease-in-out;
+    -moz-animation-timing-function: ease-in-out;
+    -o-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    -o-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+.animation-up {
+    display: block !important;
+    -webkit-animation-name: animation-up;
+    -moz-animation-name: animation-up;
+    -o-animation-name: animation-up;
+    animation-name: animation-up;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+}
+
+.animation-down {
+    display: block !important;
+    -webkit-animation-name: animation-down;
+    -moz-animation-name: animation-down;
+    -o-animation-name: animation-down;
+    animation-name: animation-down;
+}
+
+.animation-rotate180 {
+    -webkit-animation-name: animation-rotate180;
+    -moz-animation-name: animation-rotate180;
+    -o-animation-name: animation-rotate180;
+    animation-name: animation-rotate180;
+    -webkit-animation-timing-function: ease;
+    -moz-animation-timing-function: ease;
+    -o-animation-timing-function: ease;
+    animation-timing-function: ease;
+}
+
+.animation-rotate360 {
+    -webkit-animation-name: animation-rotate360;
+    -moz-animation-name: animation-rotate360;
+    -o-animation-name: animation-rotate360;
+    animation-name: animation-rotate360;
+    -webkit-animation-timing-function: ease;
+    -moz-animation-timing-function: ease;
+    -o-animation-timing-function: ease;
+    animation-timing-function: ease;
+}
+
+/*手机输入框内*/
+/*验证框*/
+
+.animation {
+    animation-name: animation-width;
+    animation-duration: 500ms;
+    animation-fill-mode: forwards;
+    overflow: hidden;
+}
+
+#verification {
+    border: none;
+    background-color: #d1d4db;
+    position: relative;
+}
+
+.verification_first {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #e8e8e8;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 15%;
+    z-index: 1;
+}
+
+.verification_first:hover {
+    cursor: move;
+}
+
+.verification_second {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.verification_second > p {
+    font-size: 12px;
+}
+
+/*验证框*/
+/*登录按钮*/
+#logon {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: #6B6ECE;
+}
+
+#logon:hover {
+    opacity: 0.75;
+    cursor: pointer;
+}
+
+#logon > button {
+    font-size: 15px;
+    font-weight: lighter;
+    color: #FFFFFF;
+    background-color: #6B6ECE;
+    width: 100%;
+    height: 100%;
+    border: none;
+    cursor: pointer;
+}
+
+
+/*登录按钮*/
+/*注册按钮*/
+#register {
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+#register > div:first-child {
+    width: 20%;
+    height: 100%;
+}
+
+#register > div:first-child > p:hover {
+    color: #6B6ECE;
+    cursor: pointer;
+}
+
+#register > div:nth-child(2) {
+    width: 40%;
+    height: 100%;
+}
+
+#register > div:nth-child(2) > p {
+    line-height: 100%;
+    display: inline-block;
+    float: right;
+}
+
+
+#register > div:nth-child(2) > p:nth-child(1) {
+    color: #6B6ECE;
+    cursor: pointer;
+}
+
+/*注册按钮*/
+/*左边盒子*/
+#box-left > ul {
+    margin-left: 30px;
+    width: 100%;
+    height: 60%;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+
+}
+
+#box-left {
+    background-color: #f4f4f9;
+    border-radius: 25px 0 0 25px;
+    box-sizing: border-box;
+    width: 220px;
+    height: 100%;
+}
+
+#box-left > ul > li {
+    flex: 1;
+    font-size: 14px;
+    font-weight: inherit;
+}
+
+#box-left > ul > li > div {
+    display: inline-block;
+}
+
+#box-left > ul > li > div > p:hover {
+    cursor: pointer;
+}
+
+#box-left > ul > li > i:before {
+    font-size: 36px;
+    margin-right: 5px;
+}
+
+#box-left > ul > li:first-child > i:before {
+    color: #6B6ECE;
+}
+
+#box-left > ul > li:first-child {
+    color: #6B6ECE;
+}
+
+/*左边盒子*/
